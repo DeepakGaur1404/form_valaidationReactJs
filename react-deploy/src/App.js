@@ -9,12 +9,12 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const validationSchemaSignup = Yup.object({
   first_name: Yup.string()
     .required("First name is required")
-    .min(3, " First name length must be greater than 3 characters")
-    .max(10, "First name length must be smaller than 10 characters"),
+    .min(3, " Length must be greater than 3 characters")
+    .max(10, "Length must be smaller than 10 characters"),
   last_name: Yup.string()
     .required("Last name is required")
-    .min(3, "Last name length must be greater than 3 character")
-    .max(10, "Last name length must be smaller than 10 characters"),
+    .min(3, "Length must be greater than 3 character")
+    .max(10, "Length must be smaller than 10 characters"),
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required"),
@@ -24,8 +24,8 @@ const validationSchemaSignup = Yup.object({
     // .max(10,"Must be of 10 digits")
     .required("Phone Number is required"),
   company_name: Yup.string()
-    .required("Organization name is required")
-    .min(3, "Organization name length must be greater than 3 character"),
+    .required("Company name is required")
+    .min(3, " Length must be greater than 3 character"),
 });
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
 
         <div className="flex flex-col justify-between items-center h-full w-full mt-2 sm:mt-10">
           <p className="text-poppins text-base lg:text-2xl">
-            Contact Details
+            Sign Up Details
           </p>
         </div>
         <div>
@@ -94,7 +94,7 @@ function App() {
                       value={values.first_name}
                     />
                     <label className="peer-focus:font-medium absolute text-base xl:text-lg text-gray-500 duration-300 transform -translate-y-6 scale-[0.65] left-3 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#7948F6] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.65] peer-focus:-translate-y-6">First name</label>
-                    {errors.first_name && touched.first_name && <p style={{ color: "red" }}> {errors.first_name}</p>}
+                    {errors.first_name && touched.first_name && <p style={{ color: "red", position:"absolute", left:"5px" }}> {errors.first_name}</p>}
                   </div>
                   <div className="relative z-0 w-full mb-4 mt-6">
                     <input type="text" name="last_name" id="last_name" className="block pt-2.5 pb-1 px-0 w-full text-base xl:text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#7948F6] peer" placeholder=" "
@@ -103,7 +103,7 @@ function App() {
                       value={values.last_name}
                     />
                     <label className="peer-focus:font-medium absolute text-base xl:text-lg text-gray-500 duration-300 transform -translate-y-6 scale-[0.65] left-3 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#7948F6] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.65] peer-focus:-translate-y-6">Last name</label>
-                    {errors.last_name && touched.last_name && <p style={{ color: "red" }}> {errors.last_name}</p>}
+                    {errors.last_name && touched.last_name && <p style={{ color: "red", position:"absolute", left:"5px" }}> {errors.last_name}</p>}
                   </div>
                 </div>
                 <div className="relative z-0 w-full mb-4 mt-6">
@@ -137,7 +137,7 @@ function App() {
                 </div>
                 <div className="mb-4 xl:mb-0 mt-4 xl:mt-10 w-full flex items-center justify-between">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button'
                   >
                     Previous
                   </button>
