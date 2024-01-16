@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import { Formik } from 'formik';
 import * as Yup from "yup";
+import React, { useState } from "react";
 
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -29,6 +29,10 @@ const validationSchemaSignup = Yup.object({
 });
 
 function App() {
+  const [disabled, setdisabled] = useState(true);
+  
+  
+ 
   return (
     <div className="App">
       <div className="flex items-center justify-center flex-col p-4 sm:p-8  w-[40%] border-2 rounded-md">
@@ -94,7 +98,7 @@ function App() {
                       value={values.first_name}
                     />
                     <label className="peer-focus:font-medium absolute text-base xl:text-lg text-gray-500 duration-300 transform -translate-y-6 scale-[0.65] left-3 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#7948F6] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.65] peer-focus:-translate-y-6">First name</label>
-                    {errors.first_name && touched.first_name && <p style={{ color: "red", position:"absolute", left:"5px" }}> {errors.first_name}</p>}
+                    {errors.first_name && touched.first_name && <p style={{ color: "red", position: "absolute", left: "5px" }}> {errors.first_name}</p>}
                   </div>
                   <div className="relative z-0 w-full mb-4 mt-6">
                     <input type="text" name="last_name" id="last_name" className="block pt-2.5 pb-1 px-0 w-full text-base xl:text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#7948F6] peer" placeholder=" "
@@ -103,7 +107,7 @@ function App() {
                       value={values.last_name}
                     />
                     <label className="peer-focus:font-medium absolute text-base xl:text-lg text-gray-500 duration-300 transform -translate-y-6 scale-[0.65] left-3 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#7948F6] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.65] peer-focus:-translate-y-6">Last name</label>
-                    {errors.last_name && touched.last_name && <p style={{ color: "red", position:"absolute", left:"5px" }}> {errors.last_name}</p>}
+                    {errors.last_name && touched.last_name && <p style={{ color: "red", position: "absolute", left: "5px" }}> {errors.last_name}</p>}
                   </div>
                 </div>
                 <div className="relative z-0 w-full mb-4 mt-6">
@@ -142,8 +146,10 @@ function App() {
                     Previous
                   </button>
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-                    disabled={isSubmitting && !isValid} type="submit"
+                    className={`font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${disabled ? 'bg-gray-400 text-white' : 'bg-blue-500 hover:bg-blue-700 text-white'
+                      }`}
+                     disabled={values.first_name && values.last_name && values.email && values.phone && values.company_name && isValid ? setdisabled(false) : setdisabled(true) } 
+                     type="submit"
                   >
                     Submit
                   </button>
